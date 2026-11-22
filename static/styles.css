@@ -1,0 +1,168 @@
+/* PredictX AI - Industrial Telemetry & Predictive Maintenance CSS */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #0a0d14;
+  --bg-secondary: #0f172a;
+  --bg-card: #131d31;
+  --bg-card-hover: #17243c;
+  --border-color: #1e293b;
+  --border-active: #334155;
+  
+  --emerald-glow: rgba(16, 185, 129, 0.25);
+  --emerald-text: #10b981;
+  --amber-glow: rgba(245, 158, 11, 0.25);
+  --amber-text: #f59e0b;
+  --crimson-glow: rgba(239, 68, 68, 0.35);
+  --crimson-text: #ef4444;
+  --cyan-glow: rgba(6, 182, 212, 0.25);
+  --cyan-text: #06b6d4;
+  --indigo-accent: #6366f1;
+
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.mono-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Glassmorphic card styling */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-active);
+}
+
+/* Status Glow Indicators */
+.status-normal {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-text);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 15px var(--emerald-glow);
+}
+
+.status-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--amber-text);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 15px var(--amber-glow);
+}
+
+.status-critical {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--crimson-text);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 20px var(--crimson-glow);
+  animation: pulse-critical 2s infinite ease-in-out;
+}
+
+@keyframes pulse-critical {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(239, 68, 68, 0.7);
+  }
+}
+
+/* Custom gauge meter bars */
+.meter-track {
+  height: 6px;
+  background: #1e293b;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+/* Sliders */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: #1e293b;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #06b6d4;
+  cursor: pointer;
+  border: 2px solid #0f172a;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+  transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #27354f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4e72;
+}
+
+/* Print view styling for maintenance ticket */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  #view-report {
+    display: block !important;
+  }
+  .glass-panel {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+}
+
